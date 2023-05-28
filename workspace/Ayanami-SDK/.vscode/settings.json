@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "aya_driver_gpio.h": "c",
+        "aya_common_headfile.h": "c",
+        "aya_driver_i2c.h": "c"
+    }
+}

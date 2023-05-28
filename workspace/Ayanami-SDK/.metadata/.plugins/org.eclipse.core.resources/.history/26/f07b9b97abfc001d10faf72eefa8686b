@@ -1,0 +1,85 @@
+/**
+ * main.c
+ */
+#include "ayanami_common/aya_common_headfile.h"
+
+void delay()
+{
+    volatile uint32_t ui32Loop;
+    for (ui32Loop = 0; ui32Loop < 800000; ui32Loop++)
+    {
+    }
+}
+void ConfigureUART(void)
+{
+    //
+    // Enable the GPIO Peripheral used by the UART.
+    //
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+
+    //
+    // Enable UART0
+    //
+    MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_UART0);
+
+    //
+    // Configure GPIO Pins for UART mode.
+    //
+    MAP_GPIOPinConfigure(GPIO_PA0_U0RX);
+    MAP_GPIOPinConfigure(GPIO_PA1_U0TX);
+    MAP_GPIOPinTypeUART(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_1);
+
+    //
+    // Use the internal 16MHz oscillator as the UART clock source.
+    //
+    UARTClockSourceSet(UART0_BASE, UART_CLOCK_PIOSC);
+
+    //
+    // Initialize the UART for console I/O.
+    //
+    UARTStdioConfig(0, 115200, 16000000);
+}
+
+int main(void)
+{
+    ConfigureUART();
+    i2c_init(I2C_0);
+    uint32_t buf;
+    I2CMasterSlaveAddrSet(I2C0_BASE, 0x38, false);
+    I2CMasterDataPut(I2C0_BASE, 0xe1);
+    delay();
+
+    I2CMasterSlaveAddrSet(I2C0_BASE, 0x38, false);
+    I2CMasterDataPut(I2C0_BASE, 0xac);
+    I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_START);
+    I2CMasterDataPut(I2C0_BASE, 0x33);
+    I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+    I2CMasterDataPut(I2C0_BASE, 0x00);
+    I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+    delay();
+
+    while (1)
+    {
+        UARTprintf("\n\n\nStart Read!\n");
+        I2CMasterSlaveAddrSet(I2C0_BASE, 0x38, true);
+        I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
+        buf = I2CMasterDataGet(I2C0_BASE);
+        UARTprintf("%x\n",buf);
+        I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
+        buf = I2CMasterDataGet(I2C0_BASE);
+        UARTprintf("%x\n",buf);
+        I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
+        buf = I2CMasterDataGet(I2C0_BASE);
+        UARTprintf("%x\n",buf);
+        I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
+        buf = I2CMasterDataGet(I2C0_BASE);
+        UARTprintf("%x\n",buf);
+        I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
+        buf = I2CMasterDataGet(I2C0_BASE);
+        UARTprintf("%x\n",buf);
+
+        delay();
+    }
+
+    return 0;
+}

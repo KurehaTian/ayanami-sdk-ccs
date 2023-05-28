@@ -1,0 +1,92 @@
+/*
+ * aya_driver_i2c.c
+ *
+ *  Created on: 2023年4月4日
+ *      Author: KurehaTian
+ */
+#include "aya_driver_i2c.h"
+
+const uint32_t sysctl_gpio[4] = {SYSCTL_PERIPH_GPIOB, SYSCTL_PERIPH_GPIOA, SYSCTL_PERIPH_GPIOE, SYSCTL_PERIPH_GPIOD};
+
+#define I2C_SLAVE_ADDR 0x38
+
+void i2c_init(i2c_index_enum i2c_n)
+{
+    switch (i2c_n)
+    {
+    case I2C_0:
+        // sysctl-i2c使能
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);
+        // sysctl-gpio使能
+        SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
+        // IO配置
+        GPIOPinConfigure(GPIO_PB2_I2C0SCL);
+        GPIOPinConfigure(GPIO_PB3_I2C0SDA);
+        GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
+        GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
+        //时钟配置
+        I2CMasterInitExpClk(I2C0_BASE,SysCtlClockGet(),true);
+        //I2CMasterEnable(I2C0_BASE);
+        break;
+    case I2C_1:
+        /* code */
+        break;
+    case I2C_2:
+        /* code */
+        break;
+    case I2C_3:
+        /* code */
+        break;
+
+    default:
+        break;
+    }
+    // sysctl-gpio使能
+
+    // 引脚功能配置
+}
+
+
+void i2c_write(i2c_index_enum i2c_n,uint8_t *data,uint8_t len)
+{
+    switch (i2c_n)
+    {
+       case I2C_0:
+           I2CMasterSlaveAddrSet(I2C0_BASE, I2C_SLAVE_ADDR, false);
+           for (uint8_t i = 0; i < len; i++)
+           {
+                   I2CMasterDataPut(I2C0_BASE, data[i]);
+                   I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+                   while (I2CMasterBusy(I2C0_BASE));
+           }
+       break;
+     }
+}
+
+void i2c_read(i2c_index_enum i2c_n,uint8_t* data, uint8_t len)
+{
+    switch (i2c_n)
+    {
+       case I2C_0:
+           // Set slave address
+          I2CMasterSlaveAddrSet(I2C0_BASE, I2C_SLAVE_ADDR, true);
+
+           // Read data
+           for (uint8_t i = 0; i < len; i++)
+           {
+               if(len==1)
+                   I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
+               else
+               if(i==0)
+                   I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_START);
+               else if(i==len-1)
+                   I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_FINISH);
+               else
+                   I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_CONT);
+
+               while (I2CMasterBusy(I2C0_BASE));
+               data[i] = I2CMasterDataGet(I2C0_BASE);
+           }
+           break;
+    }
+}

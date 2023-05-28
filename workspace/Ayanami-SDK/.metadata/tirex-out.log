@@ -1,0 +1,22 @@
+-----TI-REX started at Sat May 27 2023 23:45:16 GMT+0800 (中国标准时间)
+Sat, 27 May 2023 15:45:20 GMT connect deprecated methodOverride: use method-override npm module instead at app.js:647:21
+5.0",
+        "family": "IPv4",
+        "mac": "00:50:56:c0:00:01",
+        "internal": false
+    }
+]
+2023-05-27T15:45:16.022Z INFO DAEMON dinfra - [
+    "multiple candidate address ignored",
+    "WLAN",
+    {
+        "address": "192.168.231.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4",
+        "mac": "00:50:56:c0:00:01",
+        "internal": false
+    }
+]
+removing old log file tirex-2023-05-03.log
+-----TI-REX started at Sat May 27 2023 23:45:16 GMT+0800 (中国标准时间)
+TIREX server listening on port 55432

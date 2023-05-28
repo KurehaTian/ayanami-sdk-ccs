@@ -1,0 +1,10 @@
+"./tm4c123gh6pm_startup_ccs.obj"
+"./ayanami_driver/aya_driver_adc.obj"
+"./ayanami_driver/aya_driver_gpio.obj"
+"./ayanami_driver/aya_driver_i2c.obj"
+"./ayanami_driver/aya_driver_uart.obj"
+"./user/main.obj"
+"./utils/uartstdio.obj"
+"../tm4c123gh6pm.cmd"
+-llibc.a
+-l"C:/ti/TivaWare_C_Series-2.2.0.295/driverlib/ccs/Debug/driverlib.lib"
