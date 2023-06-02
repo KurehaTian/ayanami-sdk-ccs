@@ -28,4 +28,5 @@ Both are installed in default directories.
 >
 >[ 27 May , 2023 ] [D] I2C Driver done.
 >
-
+>[ 2 Jun , 2023 ] [D] Timer Driver done.
+>
