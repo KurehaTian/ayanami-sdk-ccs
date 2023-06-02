@@ -12,7 +12,7 @@
 #include <stdbool.h>
 
 #include "inc/hw_memmap.h"
-
+#include "inc/hw_ints.h"
 
 
 #include "driverlib/pin_map.h"
@@ -35,10 +35,4 @@
 #include "driverlib/watchdog.h"
 
 
-#include "utils/uartstdio.h"
-
-#include "ayanami_driver/aya_driver_gpio.h"
-#include "ayanami_driver/aya_driver_i2c.h"
-
-
-#endif /* AYANAMI_COMMON_AYA_COMMON_HEADFILE_H_ */
+#endif

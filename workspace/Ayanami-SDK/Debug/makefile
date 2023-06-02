@@ -14,7 +14,9 @@ ORDERED_OBJS += \
 "./ayanami_driver/aya_driver_adc.obj" \
 "./ayanami_driver/aya_driver_gpio.obj" \
 "./ayanami_driver/aya_driver_i2c.obj" \
+"./ayanami_driver/aya_driver_timer.obj" \
 "./ayanami_driver/aya_driver_uart.obj" \
+"./user/isr.obj" \
 "./user/main.obj" \
 "./utils/uartstdio.obj" \
 "../tm4c123gh6pm.cmd" \
@@ -154,8 +156,8 @@ Ayanami-SDK.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "tm4c123gh6pm_startup_ccs.obj" "ayanami_driver\aya_driver_adc.obj" "ayanami_driver\aya_driver_gpio.obj" "ayanami_driver\aya_driver_i2c.obj" "ayanami_driver\aya_driver_uart.obj" "user\main.obj" "utils\uartstdio.obj" 
-	-$(RM) "tm4c123gh6pm_startup_ccs.d" "ayanami_driver\aya_driver_adc.d" "ayanami_driver\aya_driver_gpio.d" "ayanami_driver\aya_driver_i2c.d" "ayanami_driver\aya_driver_uart.d" "user\main.d" "utils\uartstdio.d" 
+	-$(RM) "tm4c123gh6pm_startup_ccs.obj" "ayanami_driver\aya_driver_adc.obj" "ayanami_driver\aya_driver_gpio.obj" "ayanami_driver\aya_driver_i2c.obj" "ayanami_driver\aya_driver_timer.obj" "ayanami_driver\aya_driver_uart.obj" "user\isr.obj" "user\main.obj" "utils\uartstdio.obj" 
+	-$(RM) "tm4c123gh6pm_startup_ccs.d" "ayanami_driver\aya_driver_adc.d" "ayanami_driver\aya_driver_gpio.d" "ayanami_driver\aya_driver_i2c.d" "ayanami_driver\aya_driver_timer.d" "ayanami_driver\aya_driver_uart.d" "user\isr.d" "user\main.d" "utils\uartstdio.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

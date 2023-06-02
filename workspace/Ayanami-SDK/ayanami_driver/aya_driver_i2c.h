@@ -7,7 +7,7 @@
 
 #ifndef AYA_DRIVER_I2C_H_
 #define AYA_DRIVER_I2C_H_
-#include "ayanami_common/aya_common_headfile.h"
+#include <ayanami_common/aya_common_base_head.h>
 
 typedef enum
 {
@@ -15,7 +15,7 @@ typedef enum
     I2C_1,
     I2C_2,
     I2C_3
-} i2c_index_enum;
+} i2c_index_t;
 
 /**
  * 
@@ -36,8 +36,8 @@ typedef enum
 }i2c_sda_pin;
 */
 
-void i2c_init(i2c_index_enum i2c_n);
-void i2c_write(i2c_index_enum i2c_n, uint8_t slav_addr, uint8_t *data, uint8_t len);
-void i2c_read(i2c_index_enum i2c_n, uint8_t slav_addr, uint8_t *data, uint8_t len);
+void i2c_init(i2c_index_t i2c_n);
+void i2c_write(i2c_index_t i2c_n, uint8_t slav_addr, uint8_t *data, uint8_t len);
+void i2c_read(i2c_index_t i2c_n, uint8_t slav_addr, uint8_t *data, uint8_t len);
 
 #endif /* AYANAMI_DRIVER_AYA_DRIVER_I2C_H_ */

@@ -7,7 +7,7 @@
 
 #ifndef AYA_DRIVER_GPIO_C_
 #define AYA_DRIVER_GPIO_C_
-#include "ayanami_common/aya_common_headfile.h"
+#include <ayanami_common/aya_common_base_head.h>
 typedef enum // ö�ٶ˿ں�
 {
     A0 = 0x0001,

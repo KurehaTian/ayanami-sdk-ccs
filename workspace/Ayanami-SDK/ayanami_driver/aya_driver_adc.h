@@ -7,7 +7,7 @@
 
 #ifndef AYA_DRIVER_ADC_H_
 #define AYA_DRIVER_ADC_H_
-#include "ayanami_common/aya_common_headfile.h"
+#include <ayanami_common/aya_common_base_head.h>
 
 
 

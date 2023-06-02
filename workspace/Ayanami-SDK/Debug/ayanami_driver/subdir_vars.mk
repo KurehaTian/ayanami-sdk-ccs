@@ -9,36 +9,42 @@ C_SRCS += \
 ../ayanami_driver/aya_driver_adc.c \
 ../ayanami_driver/aya_driver_gpio.c \
 ../ayanami_driver/aya_driver_i2c.c \
+../ayanami_driver/aya_driver_timer.c \
 ../ayanami_driver/aya_driver_uart.c 
 
 C_DEPS += \
 ./ayanami_driver/aya_driver_adc.d \
 ./ayanami_driver/aya_driver_gpio.d \
 ./ayanami_driver/aya_driver_i2c.d \
+./ayanami_driver/aya_driver_timer.d \
 ./ayanami_driver/aya_driver_uart.d 
 
 OBJS += \
 ./ayanami_driver/aya_driver_adc.obj \
 ./ayanami_driver/aya_driver_gpio.obj \
 ./ayanami_driver/aya_driver_i2c.obj \
+./ayanami_driver/aya_driver_timer.obj \
 ./ayanami_driver/aya_driver_uart.obj 
 
 OBJS__QUOTED += \
 "ayanami_driver\aya_driver_adc.obj" \
 "ayanami_driver\aya_driver_gpio.obj" \
 "ayanami_driver\aya_driver_i2c.obj" \
+"ayanami_driver\aya_driver_timer.obj" \
 "ayanami_driver\aya_driver_uart.obj" 
 
 C_DEPS__QUOTED += \
 "ayanami_driver\aya_driver_adc.d" \
 "ayanami_driver\aya_driver_gpio.d" \
 "ayanami_driver\aya_driver_i2c.d" \
+"ayanami_driver\aya_driver_timer.d" \
 "ayanami_driver\aya_driver_uart.d" 
 
 C_SRCS__QUOTED += \
 "../ayanami_driver/aya_driver_adc.c" \
 "../ayanami_driver/aya_driver_gpio.c" \
 "../ayanami_driver/aya_driver_i2c.c" \
+"../ayanami_driver/aya_driver_timer.c" \
 "../ayanami_driver/aya_driver_uart.c" 
 
 

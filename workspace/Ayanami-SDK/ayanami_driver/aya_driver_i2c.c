@@ -8,7 +8,7 @@
 
 #define I2C_SLAVE_ADDR 0x38
 
-void i2c_init(i2c_index_enum i2c_n)
+void i2c_init(i2c_index_t i2c_n)
 {
     switch (i2c_n)
     {
@@ -73,7 +73,7 @@ void i2c_init(i2c_index_enum i2c_n)
     // Òı½Å¹¦ÄÜÅäÖÃ
 }
 
-void i2c_write(i2c_index_enum i2c_n, uint8_t slav_addr, uint8_t *data, uint8_t len)
+void i2c_write(i2c_index_t i2c_n, uint8_t slav_addr, uint8_t *data, uint8_t len)
 {
     uint32_t pher_base = 0;
 
@@ -102,7 +102,7 @@ void i2c_write(i2c_index_enum i2c_n, uint8_t slav_addr, uint8_t *data, uint8_t l
     }
 }
 
-void i2c_read(i2c_index_enum i2c_n, uint8_t slav_addr, uint8_t *data, uint8_t len)
+void i2c_read(i2c_index_t i2c_n, uint8_t slav_addr, uint8_t *data, uint8_t len)
 {
     uint32_t pher_base = 0;
     switch (i2c_n)

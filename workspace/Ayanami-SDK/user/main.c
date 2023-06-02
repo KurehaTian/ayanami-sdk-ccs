@@ -1,7 +1,9 @@
 /**
  * main.c
  */
-#include "ayanami_common/aya_common_headfile.h"
+#include <ayanami_common/aya_common_base_head.h>
+#include <ayanami_common/aya_common_driver_head.h>
+
 
 void delay()
 {
@@ -42,37 +44,22 @@ void ConfigureUART(void)
 
 int main(void)
 {
+    MAP_SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
+                       SYSCTL_XTAL_16MHZ);
     ConfigureUART();
-    int t_raw,h_raw;
-    i2c_init(I2C_3);
-    uint8_t tbuff[10],rbuff[10];
+    MAP_FPULazyStackingEnable();
+    timer_loop_init(timer_0,900000);
+    timer_loop_init(timer_1,900000);
+    timer_loop_init(timer_2,900000);
+    timer_loop_init(timer_3,900000);
+    timer_loop_init(timer_4,900000);
+    timer_loop_init(timer_5,900000);
 
-    tbuff[0]=0xac;
-    tbuff[1]=0x33;
-    tbuff[2]=0x00;
-    i2c_write(I2C_3,0x38,tbuff,3);
-    delay();
-
-
-    delay();
-
+    UARTprintf("Init Done.\n");
     while (1)
     {
+        //UARTprintf("In loop.\n");
         delay();
-        tbuff[0]=0xac;
-        tbuff[1]=0x33;
-        tbuff[2]=0x00;
-        i2c_write(I2C_3,0x38,tbuff,3);
-        delay();
-        i2c_read(I2C_3,0x38,rbuff,6);
-        h_raw=(rbuff[1] << 12) | (rbuff[2] << 4) | (rbuff[3] >> 4);
-        t_raw=((rbuff[3] & 0x0F) << 16) | (rbuff[4] << 8) | rbuff[5];
-        int temperature = (t_raw / 1048576.0) * 200.0 - 50.0;
-        int humidity = h_raw / 1048576.0 * 100.0;
-
-        UARTprintf("\nTemp=%d,Humi=%d",temperature,humidity);
-        //UARTprintf("\n\n\n");
     }
-
     return 0;
 }

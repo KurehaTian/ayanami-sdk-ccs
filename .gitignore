@@ -43,3 +43,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+workspace/.metadata/
+workspace/.jxbrowser.userdata/
