@@ -1,8 +1,0 @@
-
-**** Build of configuration Debug for project Ayanami-SDK ****
-
-"C:\\ti\\ccs1230\\ccs\\utils\\bin\\gmake" -k -j 12 all -O 
- 
-gmake[1]: 'Ayanami-SDK.out' is up to date.
-
-**** Build Finished ****
