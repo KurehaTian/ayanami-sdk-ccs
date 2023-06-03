@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "1",
+            "includePath": [
+                "C:/ti/TivaWare_C_Series-2.2.0.295"
+            ],
+            "defines": [],
+            "intelliSenseMode": "windows-msvc-x64"
+        }
+    ],
+    "version": 4
+}
